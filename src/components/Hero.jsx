@@ -22,23 +22,20 @@ const Hero = () => {
       <div className="embla relative" ref={emblaRef}>
         <div className="embla__container flex gap-4 ">
           <div className="embla__slide">
-            <img src="/public/images/AquaApp.png" alt="AquaApp website" />
+            <img src="/images/AquaApp.png" alt="AquaApp website" />
+          </div>
+          <div className="embla__slide">
+            <img src="/images/SuburiaSkateboard.png" alt="Skateboard shop" />
+          </div>
+          <div className="embla__slide">
+            <img src="/images/3legantShop.png" alt="3legant shop" />
+          </div>
+          <div className="embla__slide">
+            <img src="/images/Budivelnyk.png" alt="budivelnyk shop" />
           </div>
           <div className="embla__slide">
             <img
-              src="/public/images/SuburiaSkateboard.png"
-              alt="Skateboard shop"
-            />
-          </div>
-          <div className="embla__slide">
-            <img src="/public/images/3legantShop.png" alt="3legant shop" />
-          </div>
-          <div className="embla__slide">
-            <img src="/public/images/Budivelnyk.png" alt="budivelnyk shop" />
-          </div>
-          <div className="embla__slide">
-            <img
-              src="/public/images/JeffersonWebsite.png"
+              src="/images/JeffersonWebsite.png"
               alt="Jefferson personal website"
             />
           </div>

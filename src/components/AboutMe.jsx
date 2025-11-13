@@ -7,31 +7,31 @@ const AboutMe = () => {
         <h2 className="uppercase text-center text-3xl mb-8">tech skills</h2>
         <ul className="skills-menu flex flex-row flex-wrap justify-center gap-3 mb-12">
           <li>
-            <img src="/public/images/html.png" alt="" />
+            <img src="/images/html.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/css.png" alt="" />
+            <img src="/images/css.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/sass.png" alt="" />
+            <img src="/images/sass.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/js.png" alt="" />
+            <img src="/images/js.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/ts.png" alt="" />
+            <img src="/images/ts.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/react.png" alt="" />
+            <img src="/images/react.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/nextjs.png" alt="" />
+            <img src="/images/nextjs.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/nodejs.png" alt="" />
+            <img src="/images/nodejs.png" alt="" />
           </li>
           <li>
-            <img src="/public/images/mongodb.png" alt="" />
+            <img src="/images/mongodb.png" alt="" />
           </li>
         </ul>
       </div>
