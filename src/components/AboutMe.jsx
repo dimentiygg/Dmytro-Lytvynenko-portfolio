@@ -44,7 +44,7 @@ const AboutMe = () => {
           balance between clean design and smooth functionality. I’m especially
           interested in companies that value quality, innovation, and building
           products that make everyday life easier or more enjoyable. Let’s bring
-          ideas to life and create digital solutions that make a real impact.
+          ideas to life and create digital solutions that make a real impact!
         </p>
       </div>
     </section>
