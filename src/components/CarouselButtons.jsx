@@ -1,10 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import React, { useCallback } from "react";
+import { ChevronRight } from "./animate-ui/icons/chevron-right";
+import { ChevronLeft } from "./animate-ui/icons/chevron-left";
 
 export const usePrevNextButtons = (emblaApi) => {
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-
   const onPrevButtonClick = useCallback(() => {
     if (!emblaApi) return;
     emblaApi.scrollPrev();
@@ -15,68 +13,42 @@ export const usePrevNextButtons = (emblaApi) => {
     emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnDisabled(!emblaApi.canScrollPrev());
-    setNextBtnDisabled(!emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    onSelect();
-    emblaApi.on("reInit", onSelect);
-    emblaApi.on("select", onSelect);
-
-    return () => {
-      emblaApi.off("reInit", onSelect);
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
   return {
-    prevBtnDisabled,
-    nextBtnDisabled,
     onPrevButtonClick,
     onNextButtonClick,
   };
 };
 
 export const PrevButton = (props) => {
-  const { children, className = "", disabled, ...restProps } = props;
+  const { children, className = "", ...restProps } = props;
 
   return (
     <button
-      className={`embla__button embla__button--prev flex items-center justify-center w-6 h-6 absolute top-1/2 left-10 -translate-y-1/2 bg-black transition-all duration-300 active:scale-90 ${
-        disabled
-          ? "opacity-0 pointer-events-none"
-          : "opacity-100 pointer-events-auto"
-      } ${className}`}
+      className="embla__button embla__button--prev flex items-center justify-center absolute top-1/2 left-10 -translate-y-1/2 border-blckMain overflow-hidden "
       type="button"
-      disabled={disabled}
       {...restProps}
     >
-      <IoIosArrowBack size={15} color="white" />
+      <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs bg-white">
+        <ChevronLeft animateOnHover />
+      </div>
       {children}
     </button>
   );
 };
 
 export const NextButton = (props) => {
-  const { children, className = "", disabled, ...restProps } = props;
+  const { children, className = "", ...restProps } = props;
 
   return (
     <button
-      className={`embla__button embla__button--next flex items-center justify-center w-6 h-6 absolute top-1/2 right-10 -translate-y-1/2 bg-black transition-all duration-300 active:scale-90 ${
-        disabled
-          ? "opacity-0 pointer-events-none"
-          : "opacity-100 pointer-events-auto"
-      } ${className}`}
+      className="embla__button embla__button--next flex items-center justify-center w-6 h-6 absolute top-1/2 right-10 -translate-y-1/2 border-blckMain overflow-hidden"
       type="button"
-      disabled={disabled}
       {...restProps}
     >
-      <IoIosArrowForward size={15} color="white" />
+      <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs bg-white">
+        <ChevronRight animateOnHover />
+      </div>
+
       {children}
     </button>
   );
