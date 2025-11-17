@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { SquareArrowOutUpRight } from "./animate-ui/icons/square-arrow-out-up-right";
+import { AnimateIcon } from "./animate-ui/icons/icon";
 import { Send } from "./animate-ui/icons/send";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -56,28 +57,32 @@ const Header = () => {
       <div ref={contentRef} className="flex justify-between w-full">
         <ul className="flex flex-col gap-1 text-base font-helvetica font-normal text-blckMain">
           <li className="">
-            <a
-              className="flex flex-row gap-2 "
-              target="_blank"
-              href="https://www.linkedin.com/in/dima-lytvynenko/"
-            >
-              <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs">
-                <SquareArrowOutUpRight animateOnHover />
-              </div>
-              Linkedin
-            </a>
+            <AnimateIcon animateOnHover>
+              <a
+                className="flex flex-row gap-2"
+                target="_blank"
+                href="https://github.com/dimentiygg"
+              >
+                <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs">
+                  <SquareArrowOutUpRight />
+                </div>
+                Linkedin
+              </a>
+            </AnimateIcon>
           </li>
           <li className="">
-            <a
-              className="flex flex-row gap-2"
-              target="_blank"
-              href="https://github.com/dimentiygg"
-            >
-              <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs">
-                <SquareArrowOutUpRight animateOnHover />
-              </div>
-              Github
-            </a>
+            <AnimateIcon animateOnHover>
+              <a
+                className="flex flex-row gap-2"
+                target="_blank"
+                href="https://github.com/dimentiygg"
+              >
+                <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs">
+                  <SquareArrowOutUpRight />
+                </div>
+                Github
+              </a>
+            </AnimateIcon>
           </li>
         </ul>
         <div className="">
@@ -88,16 +93,18 @@ const Header = () => {
         </div>
 
         <div className="">
-          <a
-            className="flex flex-row items-center justify-center gap-2 font-helvetica font-normal text-blckMain"
-            target="_blank"
-            href="/"
-          >
-            Let's connect
-            <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs">
-              <Send animateOnHover />
-            </div>
-          </a>
+          <AnimateIcon animateOnHover>
+            <a
+              className="flex flex-row items-center justify-center gap-2 font-helvetica font-normal text-blckMain"
+              target="_blank"
+              href="/"
+            >
+              Let's connect
+              <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs">
+                <Send />
+              </div>
+            </a>
+          </AnimateIcon>
         </div>
       </div>
     </header>
