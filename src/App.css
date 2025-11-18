@@ -18,11 +18,6 @@
   width: 100%;
 } */
 
-.skills-menu img {
-  width: 48px;
-  height: 48px;
-}
-
 /* .embla__slide img {
   height: 500px;
   border-radius: 10px;
@@ -30,9 +25,6 @@
 
 .embla {
   margin: auto;
-  --slide-height: 19rem;
-  --slide-spacing: 1rem;
-  --slide-size: 80%;
 }
 .embla__viewport {
   overflow: hidden;
@@ -43,7 +35,7 @@
 }
 .embla__slide {
   transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
+  flex: 0 0 60%; /* Slide covers 50% of the viewport */
   min-width: 0;
 }
 

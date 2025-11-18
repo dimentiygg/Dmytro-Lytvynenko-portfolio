@@ -10,83 +10,61 @@ const Hero = () => {
   ]);
 
   const { onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
-
+  const slides = [
+    {
+      name: "Aquatrack app",
+      img: "/images/AquaApp.png",
+      link: "https://project-aqua-app-front.vercel.app/",
+      containerColor: "#F0EFF4",
+      index: 1,
+    },
+    {
+      name: "Suburia Skateboard",
+      img: "/images/SuburiaSkateboard.png",
+      link: "idyllic-meerkat-a67a4c.netlify.app",
+      containerColor: "#FFF3FB",
+      index: 2,
+    },
+    {
+      name: "3legant shop",
+      img: "/images/3legantShop.png",
+      link: "dimentiygg.github.io/3legantShopV2/",
+      containerColor: "#F0F0F0",
+      index: 3,
+    },
+    {
+      name: "Budivelnyk shop",
+      img: "/images/Budivelnyk.png",
+      link: "budivelnyk.vercel.app",
+      containerColor: "#F0EFF4",
+      index: 4,
+    },
+    {
+      name: "Jefferson Website",
+      img: "/images/JeffersonWebsite.png",
+      link: "https://fulaytar.github.io/team_project_Portfolio/",
+      containerColor: "#F0EFF4",
+      index: 5,
+    },
+  ];
   return (
     <section className="relative z-60 mb-[128px]">
       <div className="embla relative overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex gap-5 ">
-          <div className="embla__slide relative p-[40px] group bg-whtContainer border-containerBorder border rounded-lg">
-            <a
-              target="blank"
-              href="https://github.com/oleksasa/project-AquaApp-front"
+          {slides.map(({ name, img, link, containerColor, index }) => (
+            <div
+              className="embla__slide max-w-[800px] flex justify-center items-center relative h-[60vh] p-[40px] group border-containerBorder border rounded-lg"
+              key={index}
+              style={{ backgroundColor: containerColor }}
             >
-              <img
-                className="rounded-xl"
-                src="/images/AquaApp.png"
-                alt="AquaApp website"
-              />
-              <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
-                <p>Aquatrack app</p>
-              </div>
-            </a>
-          </div>
-          <div className="embla__slide relative p-[40px] group bg-whtContainer border-containerBorder border rounded-lg">
-            <a
-              target="blank"
-              href="https://github.com/dimentiygg/skateboard-website"
-            >
-              <img
-                className="rounded-xl"
-                src="/images/SuburiaSkateboard.png"
-                alt="Skateboard shop"
-              />
-              <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
-                <p>Suburia Skateboard</p>
-              </div>
-            </a>
-          </div>
-          <div className="embla__slide relative p-[40px] group bg-whtContainer border-containerBorder border rounded-lg">
-            <a
-              target="blank"
-              href="https://github.com/dimentiygg/3legantShopV2"
-            >
-              <img
-                className="rounded-xl"
-                src="/images/3legantShop.png"
-                alt="3legant shop"
-              />
-              <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
-                <p>3legant Shop</p>
-              </div>
-            </a>
-          </div>
-          <div className="embla__slide relative p-[40px] group bg-whtContainer border-containerBorder border rounded-lg">
-            <a target="blank" href="https://github.com/dimentiygg/Budivelnyk">
-              <img
-                className="rounded-xl"
-                src="/images/Budivelnyk.png"
-                alt="budivelnyk shop"
-              />
-              <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
-                <p>Budivelnyk</p>
-              </div>
-            </a>
-          </div>
-          <div className="embla__slide relative p-[40px] group bg-whtContainer border-containerBorder border rounded-lg">
-            <a
-              target="blank"
-              href="https://github.com/fulaytar/team_project_Portfolio"
-            >
-              <img
-                className="rounded-xl"
-                src="/images/JeffersonWebsite.png"
-                alt="Jefferson personal website"
-              />
-              <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
-                <p>Jefferson Website</p>
-              </div>
-            </a>
-          </div>
+              <a target="blank" href={link}>
+                <img className="rounded-xl" src={img} alt={name} />
+                <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm text-blckMain translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
+                  <p>{name}</p>
+                </div>
+              </a>
+            </div>
+          ))}
         </div>
         <div className="embla__controls">
           <div className="embla__buttons">

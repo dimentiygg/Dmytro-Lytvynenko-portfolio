@@ -5,7 +5,7 @@ import { Icon } from "./Icon";
 const AboutMe = () => {
   return (
     <>
-      <section className="relative flex flex-col gap-16 items-center mb-[320px] max-sm:mx-16">
+      <section className="relative z-50 flex flex-col gap-16 items-center mb-[320px] max-sm:mx-16">
         <div className="">
           <h2 className="text-center mb-6 font-helvetica text-gry font-normal text-sm">
             Tech stack
@@ -67,9 +67,8 @@ const AboutMe = () => {
           to turn ideas into impactful digital solutions.
         </p>
       </section>
-      <div className="relative -mt-64 h-64 overflow-hidden">
+      <div className="relative top-0 -mt-64 h-64 overflow-hidden bg-linear-to-b from-white to-transparent">
         <AnimatedBackground />
-        <div className="absolute inset-0 bg-linear-to-b from-white to-transparent pointer-events-none z-10 " />
       </div>
     </>
   );
