@@ -33,11 +33,13 @@
   display: flex;
   touch-action: pan-y pinch-zoom;
 }
-.embla__slide {
+
+.embla__container a {
   transform: translate3d(0, 0, 0);
   flex: 0 0 60%; /* Slide covers 50% of the viewport */
   min-width: 0;
 }
+
 /* 
 .embla__slide:last-child {
   margin-right: 20px;
