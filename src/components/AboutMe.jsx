@@ -1,8 +1,11 @@
 import React from "react";
 import AnimatedBackground from "./AnimatedBackground";
 import { Icon } from "./Icon";
+import LinksMenu from "./LinksMenu";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const AboutMe = () => {
+  const isMobile = useIsMobile();
   return (
     <>
       <section className="relative z-50 flex flex-col gap-16 items-center mb-[320px] max-sm:mx-16">
@@ -66,8 +69,9 @@ const AboutMe = () => {
           functionality. Work with companies that value quality and innovation
           to turn ideas into impactful digital solutions.
         </p>
+        {isMobile ? <LinksMenu /> : null}
       </section>
-      <div className="relative top-0 -mt-64 h-64 overflow-hidden bg-linear-to-b from-white to-transparent">
+      <div className="relative top-0 bg-linear-to-b from-white to-transparent">
         <AnimatedBackground />
       </div>
     </>

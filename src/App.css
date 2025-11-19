@@ -38,7 +38,7 @@
   flex: 0 0 60%; /* Slide covers 50% of the viewport */
   min-width: 0;
 }
-
+/* 
 .embla__slide:last-child {
   margin-right: 20px;
-}
+} */

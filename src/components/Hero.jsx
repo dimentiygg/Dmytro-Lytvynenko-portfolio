@@ -50,10 +50,10 @@ const Hero = () => {
   return (
     <section className="relative z-60 mb-[128px]">
       <div className="embla relative overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex gap-5 ">
+        <div className="embla__container flex gap-5 max-sm:gap-2 ">
           {slides.map(({ name, img, link, containerColor, index }) => (
             <div
-              className="embla__slide max-w-[800px] flex justify-center items-center relative h-[60vh] p-[40px] group border-containerBorder border rounded-lg"
+              className="embla__slide max-w-[800px] flex justify-center items-center relative h-[60vh] p-[40px] group border-containerBorder border rounded-lg last:mr-5 max-sm:px-[18px] max-sm:py-0 max-sm:last:mr-2"
               key={index}
               style={{ backgroundColor: containerColor }}
             >

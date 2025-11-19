@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { SquareArrowOutUpRight } from "./animate-ui/icons/square-arrow-out-up-right";
 import { ToggleRight } from "./animate-ui/icons/toggle-right";
 import { AnimateIcon } from "./animate-ui/icons/icon";
 import { Send } from "./animate-ui/icons/send";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import LinksMenu from "./LinksMenu";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -13,6 +14,7 @@ const Header = () => {
   const headerRef = useRef(null);
   const linkRefs = useRef([]);
   const titleRefs = useRef([]);
+  const scrollRef = useRef(null);
 
   const registerLinkRef = useCallback((element) => {
     if (element && !linkRefs.current.includes(element)) {
@@ -28,8 +30,10 @@ const Header = () => {
 
   useEffect(() => {
     const header = headerRef.current;
+    const scroll = scrollRef.current;
 
     if (!header) return;
+    if (!scroll) return;
 
     const linkAnimation =
       linkRefs.current.length > 0
@@ -78,13 +82,27 @@ const Header = () => {
       },
     });
 
+    const scrollAnimation = gsap.to(scroll, {
+      opacity: 0,
+      ease: "power2.out",
+      duration: 0.35,
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top+=1 top",
+        toggleActions: "play none none reverse",
+      },
+    });
+
     return () => {
       linkAnimation?.kill();
       titleAnimation?.kill();
       headerAnimation.kill();
+      scrollAnimation.kill();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -92,34 +110,10 @@ const Header = () => {
         ref={headerRef}
         className="sticky top-0 z-100 flex justify-between pt-6 px-10 overflow-hidden bg-white mb-[100px] max-sm:px-6"
       >
-        <ul className=" flex flex-col gap-2 pointer-events-auto max-sm:hidden font-helvetica font-normal text-base text-blckMain ">
-          <li>
-            <AnimateIcon animateOnHover>
-              <a className="flex flex-row gap-2" target="_blank" href="">
-                <div className=" relative z-200 flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs bg-white">
-                  <SquareArrowOutUpRight />
-                </div>
-                <span className="" ref={registerLinkRef}>
-                  Linkedin
-                </span>
-              </a>
-            </AnimateIcon>
-          </li>
-          <li>
-            <AnimateIcon animateOnHover>
-              <a className="flex flex-row gap-2" target="_blank" href="">
-                <div className="flex items-center justify-center w-5 h-5 border-[0.5px] border-blckMain rounded-xs bg-white">
-                  <SquareArrowOutUpRight />
-                </div>
-                <span className="" ref={registerLinkRef}>
-                  GitHub
-                </span>
-              </a>
-            </AnimateIcon>
-          </li>
-        </ul>
+        {!isMobile ? <LinksMenu linkRef={registerLinkRef} /> : null}
+
         <div>
-          <h1 className=" flex justify-center w-[154px] rounded-xs bg-white font-helvetica font-medium text-blckMain">
+          <h1 className=" flex justify-center w-[154px] rounded-xs bg-white font-helvetica font-medium text-blckMain max-sm:justify-start">
             <span className="text-center">D</span>
             <span ref={registerTitleRef} className="mr-1">
               mytro
@@ -154,13 +148,21 @@ const Header = () => {
           </AnimateIcon>
         </div>
       </header>
-      <div className="fixed bottom-6 left-10 flex flex-row gap-2 z-50">
+      <div
+        ref={scrollRef}
+        className="fixed bottom-6 left-10 flex flex-row gap-2 z-50 max-sm:left-1/2 max-sm:-translate-x-1/2"
+      >
         <AnimateIcon loopDelay={2000} animate loop>
           <div className="flex items-center justify-center w-5 h-5 border-[0.5px] bg-white border-blckMain rounded-xs">
             <ToggleRight />
           </div>
         </AnimateIcon>
-        <span className="font-helvetica font-normal text-base">Scroll</span>
+
+        {isMobile ? (
+          <span className="font-helvetica font-normal text-base">Swipe</span>
+        ) : (
+          <span className="font-helvetica font-normal text-base">Scroll</span>
+        )}
       </div>
     </>
   );
