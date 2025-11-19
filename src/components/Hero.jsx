@@ -58,7 +58,7 @@ const Hero = () => {
               href={link}
             >
               <div
-                className="embla__slide flex justify-center items-center max-h-[60vh] p-[40px] group border-containerBorder border rounded-lg max-sm:px-[18px] max-sm:py-0 "
+                className="embla__slide flex justify-center items-center h-[60vh] p-[40px] group border-containerBorder border rounded-lg max-sm:px-[18px] max-sm:py-0 "
                 key={index}
                 style={{ backgroundColor: containerColor }}
               >
