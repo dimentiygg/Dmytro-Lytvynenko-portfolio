@@ -30,15 +30,12 @@
 .embla__viewport {
   overflow: hidden;
 }
-.embla__container {
-  display: flex;
-  touch-action: pan-y pinch-zoom;
-}
 
-.embla__container a {
+.embla__slide {
   transform: translate3d(0, 0, 0);
-  flex: 0 0 60%; /* Slide covers 50% of the viewport */
+  flex: 0 0 60%;
   min-width: 0;
+  touch-action: pan-y pinch-zoom;
 }
 
 /* 
