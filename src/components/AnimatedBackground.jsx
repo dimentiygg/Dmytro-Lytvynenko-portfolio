@@ -115,7 +115,7 @@ export default function AnimatedBackground() {
     <>
       <div
         ref={containerRef}
-        className="fixed bottom-0 z-0 h-[320px] w-full pointer-events-none opacity-10"
+        className="fixed bottom-0 z-0 h-[320px] w-full pointer-events-none opacity-10 max-sm:h-[200px]"
       />
     </>
   );

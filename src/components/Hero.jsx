@@ -48,7 +48,7 @@ const Hero = () => {
     },
   ];
   return (
-    <section className="relative z-60 mb-[128px]">
+    <section className="relative z-60 mb-[180px]">
       <div className="embla relative overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex gap-5 max-sm:gap-2 ">
           {slides.map(({ name, img, link, containerColor, index }) => (

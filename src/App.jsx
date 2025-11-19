@@ -12,7 +12,7 @@ function App() {
         <Hero />
         <AboutMe />
       </main>
-      <div className="fixed bottom-0 bg-linear-to-b from-white to-transparent pointer-events-none z-1 w-full h-[320px]"></div>
+      <div className="fixed bottom-0 bg-linear-to-b from-white to-transparent pointer-events-none z-1 w-full h-[320px] max-sm:h-[200px]"></div>
     </div>
   );
 }

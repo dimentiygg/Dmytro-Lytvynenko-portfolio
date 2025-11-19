@@ -112,18 +112,22 @@ const Header = () => {
       >
         {!isMobile ? <LinksMenu linkRef={registerLinkRef} /> : null}
 
-        <div>
-          <h1 className=" flex justify-center w-[154px] rounded-xs bg-white font-helvetica font-medium text-blckMain max-sm:justify-start">
-            <span className="text-center">D</span>
-            <span ref={registerTitleRef} className="mr-1">
-              mytro
-            </span>
-            <span className="text-center">L</span>
-            <span ref={registerTitleRef}>ytvynenko</span>
-          </h1>
+        <div className="flex flex-col items-center max-sm:items-start">
+          <div className="flex justify-center w-[154px] rounded-xs bg-white font-helvetica font-medium text-blckMain max-sm:justify-start">
+            <div className="">
+              <span className="text-center">D</span>
+              <span ref={registerTitleRef} className="mr-1">
+                mytro
+              </span>
+            </div>
+            <div className="">
+              <span className="text-center">L</span>
+              <span ref={registerTitleRef}>ytvynenko</span>
+            </div>
+          </div>
           <p
             ref={registerTitleRef}
-            className="text-center font-normal text-gry max-sm:text-start"
+            className="font-normal text-gry max-sm:text-start"
           >
             Frontend engineer
           </p>
@@ -136,7 +140,7 @@ const Header = () => {
               href=""
             >
               <span
-                className="font-helvetica font-normal text-blckMain "
+                className="font-helvetica text-base font-normal text-blckMain "
                 ref={registerLinkRef}
               >
                 Let's connect
