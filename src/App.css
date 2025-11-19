@@ -24,6 +24,7 @@
 } */
 
 .embla {
+  touch-action: pan-y;
   margin: auto;
 }
 .embla__viewport {

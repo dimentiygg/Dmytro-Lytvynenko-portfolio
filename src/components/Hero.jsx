@@ -4,7 +4,13 @@ import { PrevButton, NextButton, usePrevNextButtons } from "./CarouselButtons";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 const Hero = () => {
-  const options = { slidesToScroll: 1, loop: true };
+  const options = {
+    slidesToScroll: 1,
+    loop: true,
+    dragFree: false,
+    skipSnaps: false,
+    mcontainScroll: "trimSnaps",
+  };
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     WheelGesturesPlugin(),
   ]);
