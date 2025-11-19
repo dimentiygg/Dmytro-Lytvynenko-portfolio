@@ -52,18 +52,18 @@ const Hero = () => {
       <div className="embla relative overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex gap-5 max-sm:gap-2 ">
           {slides.map(({ name, img, link, containerColor, index }) => (
-            <div
-              className="embla__slide max-w-[800px] flex justify-center items-center relative h-[60vh] p-[40px] group border-containerBorder border rounded-lg last:mr-5 max-sm:px-[18px] max-sm:py-0 max-sm:last:mr-2"
-              key={index}
-              style={{ backgroundColor: containerColor }}
-            >
-              <a target="blank" href={link}>
+            <a target="blank" href={link}>
+              <div
+                className="embla__slide max-w-[800px] flex justify-center items-center relative h-[60vh] p-[40px] group border-containerBorder border rounded-lg last:mr-5 max-sm:px-[18px] max-sm:py-0 max-sm:last:mr-2"
+                key={index}
+                style={{ backgroundColor: containerColor }}
+              >
                 <img className="rounded-xl" src={img} alt={name} />
                 <div className="absolute bottom-0 left-2 w-[240px] h-[52px] py-4 pl-4 bg-white rounded-lg shadow-soft font-helvetica font-normal text-sm text-blckMain translate-y-full group-hover:translate-y-[-8px] transition-all duration-300 ease-out ">
                   <p>{name}</p>
                 </div>
-              </a>
-            </div>
+              </div>
+            </a>
           ))}
         </div>
         <div className="embla__controls">
