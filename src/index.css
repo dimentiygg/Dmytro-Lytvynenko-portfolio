@@ -128,7 +128,6 @@ li {
 
 html,
 body {
-  overscroll-behavior: none;
   line-height: 140%;
 }
 

@@ -33,7 +33,7 @@
 
 .embla__slide {
   transform: translate3d(0, 0, 0);
-  flex: 0 0 60%;
+  flex: 0 0 80%;
   min-width: 0;
   touch-action: pan-y pinch-zoom;
 }

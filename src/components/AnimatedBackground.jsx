@@ -2,10 +2,17 @@ import React from "react";
 
 import { useEffect, useRef, useState } from "react";
 import p5 from "p5";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsMobile } from "@/hooks/useIsMobile";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AnimatedBackground() {
   const containerRef = useRef(null);
   const sketchRef = useRef(null);
+  const heightRef = useRef(null);
+  const isMobile = useIsMobile();
 
   const [lineCount, setLineCount] = useState(3);
   const [noiseDensity, setNoiseDensity] = useState(50);
@@ -111,12 +118,66 @@ export default function AnimatedBackground() {
     return () => sketchRef.current.remove();
   }, [lineCount, noiseDensity, extraRotate]);
 
+  useEffect(() => {
+    if (!heightRef.current) return;
+
+    const startHeight = isMobile ? 160 : 180;
+    const maxHeight = isMobile ? 200 : 320;
+
+    gsap.set(heightRef.current, {
+      height: `${startHeight}px`,
+    });
+
+    const scrollAnimation = gsap.fromTo(
+      heightRef.current,
+      {
+        height: `${startHeight}px`,
+      },
+      {
+        height: `${maxHeight}px`,
+        ease: "none",
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "max",
+          scrub: true,
+        },
+      }
+    );
+
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (sketchRef.current && containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        const height = containerRef.current.offsetHeight;
+        sketchRef.current.resizeCanvas(width, height);
+      }
+    });
+
+    resizeObserver.observe(heightRef.current);
+
+    return () => {
+      scrollAnimation.kill();
+      resizeObserver.disconnect();
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.vars && trigger.vars.trigger === "body") {
+          trigger.kill();
+        }
+      });
+    };
+  }, [isMobile]);
+
   return (
     <>
-      <div
-        ref={containerRef}
-        className="fixed bottom-0 z-0 h-[320px] w-full pointer-events-none opacity-10 max-sm:h-[200px]"
-      />
+      <div className="relative w-full pointer-events-none opacity-10 overflow-hidden">
+        <div ref={heightRef} className="relative">
+          <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+          <div className="absolute top-0 h-full w-full bg-linear-to-b from-white to-transparent pointer-events-none" />
+        </div>
+      </div>
     </>
   );
 }

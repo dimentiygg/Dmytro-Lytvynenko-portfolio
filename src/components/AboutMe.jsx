@@ -71,7 +71,8 @@ const AboutMe = () => {
         </p>
         {isMobile ? <LinksMenu /> : null}
       </section>
-      <div className="relative top-0 bg-linear-to-b from-white to-transparent">
+
+      <div className="fixed bottom-0 w-full">
         <AnimatedBackground />
       </div>
     </>
