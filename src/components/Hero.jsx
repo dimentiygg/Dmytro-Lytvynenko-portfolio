@@ -19,7 +19,7 @@ const Hero = () => {
   const slides = [
     {
       name: "Aquatrack app",
-      img: "/images/123.png",
+      img: "/images/AquaApp.png",
       link: "https://project-aqua-app-front.vercel.app/",
       containerColor: "#F0EFF4",
       index: 1,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -12,7 +12,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Header = () => {
   const headerRef = useRef(null);
-  const linkRefs = useRef([]);
+  const linkedinRef = useRef(null);
+  const githubRef = useRef(null);
+  const connectRef = useRef(null);
   const scrollRef = useRef(null);
   const fullNameRef = useRef(null);
   const shortNameRef = useRef(null);
@@ -22,12 +24,6 @@ const Header = () => {
   const mytroRef = useRef(null);
   const ytvynenkoRef = useRef(null);
   const subtitleRef = useRef(null);
-
-  const registerLinkRef = useCallback((element) => {
-    if (element && !linkRefs.current.includes(element)) {
-      linkRefs.current.push(element);
-    }
-  }, []);
 
   const isMobile = useIsMobile();
 
@@ -59,24 +55,36 @@ const Header = () => {
       gsap.set(shortName, { opacity: 0, scale: 0.8, x: 0 });
     }
 
-    const scrollTriggerConfig = {
-      trigger: document.body,
-      start: "top top",
-      end: "top+=100 top",
-      scrub: 1,
-      immediateRender: false,
-    };
+    const toggleActions = "play none none reverse";
 
-    const nameTimeline = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+    const nameTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top+=1 top",
+        toggleActions,
+      },
+    });
+
+    const animationDuration = 0.15;
 
     const fadeOutText = {
       from: { opacity: 1, scale: 1 },
-      to: { opacity: 0, scale: 0.7, ease: "power2.inOut" },
+      to: {
+        opacity: 0,
+        scale: 0.7,
+        ease: "power2.inOut",
+        duration: animationDuration,
+      },
     };
 
     const fadeOutSubtitle = {
       from: { opacity: 1, y: 0 },
-      to: { opacity: 0, y: -10, ease: "power2.in" },
+      to: {
+        opacity: 0,
+        y: -10,
+        ease: "power2.in",
+        duration: animationDuration,
+      },
     };
 
     if (isMobile && firstName && lastName && lastNameParent) {
@@ -101,7 +109,11 @@ const Header = () => {
         .fromTo(
           lastNameParent,
           { x: 0 },
-          { x: distanceToMove || -50, ease: "power2.inOut" },
+          {
+            x: distanceToMove || -50,
+            ease: "power2.inOut",
+            duration: animationDuration,
+          },
           0
         )
         .fromTo(subtitle, fadeOutSubtitle.from, fadeOutSubtitle.to, 0);
@@ -116,34 +128,68 @@ const Header = () => {
         .fromTo(
           [firstName, lastName],
           { opacity: 1 },
-          { opacity: 0, ease: "power2.inOut" },
+          { opacity: 0, ease: "power2.inOut", duration: animationDuration },
           0
         )
         .fromTo(
           fullName,
           { scale: 1, opacity: 1 },
-          { scale: 0.6, opacity: 0, ease: "power2.inOut" },
+          {
+            scale: 0.6,
+            opacity: 0,
+            ease: "power2.inOut",
+            duration: animationDuration,
+          },
           0
         )
         .fromTo(
           shortName,
           { opacity: 0, scale: 0.8 },
-          { opacity: 1, scale: 1, ease: "power2.out" },
+          {
+            opacity: 1,
+            scale: 1,
+            ease: "power2.out",
+            duration: animationDuration,
+          },
           0.15
         )
         .fromTo(subtitle, fadeOutSubtitle.from, fadeOutSubtitle.to, 0);
     }
-    const toggleActions = "play none none reverse";
+
     const animations = [
-      linkRefs.current.length > 0 &&
-        gsap.to(linkRefs.current, {
-          y: 80,
+      linkedinRef.current &&
+        gsap.to(linkedinRef.current, {
+          y: 15,
+          opacity: 0,
           ease: "power2.out",
-          duration: 0.35,
+          duration: 0.15,
           scrollTrigger: {
             trigger: document.body,
             start: "top+=1 top",
-            end: "top+=2 top",
+            toggleActions,
+          },
+        }),
+      githubRef.current &&
+        gsap.to(githubRef.current, {
+          y: 15,
+          opacity: 0,
+          ease: "power2.out",
+          duration: 0.15,
+          scrollTrigger: {
+            trigger: document.body,
+            start: "top+=1 top",
+            toggleActions,
+          },
+        }),
+      connectRef.current &&
+        gsap.to(connectRef.current, {
+          opacity: 0,
+          y: 15,
+          ease: "power2.out",
+          duration: 0.15,
+          scrollTrigger: {
+            trigger: document.body,
+            start: "top+=1 top",
             toggleActions,
           },
         }),
@@ -184,7 +230,9 @@ const Header = () => {
         ref={headerRef}
         className="fixed top-0 z-100 w-full flex justify-between pt-6 px-10 overflow-hidden bg-white mb-[100px] max-sm:px-6"
       >
-        {!isMobile ? <LinksMenu linkRef={registerLinkRef} /> : null}
+        {!isMobile ? (
+          <LinksMenu linkedinRef={linkedinRef} githubRef={githubRef} />
+        ) : null}
 
         <div className="flex flex-col items-center max-sm:items-start relative">
           <div
@@ -221,19 +269,18 @@ const Header = () => {
             Frontend engineer
           </p>
         </div>
-        <div className="">
+        <div className="h-fit overflow-hidden">
           <AnimateIcon animateOnHover>
             <a
               className="flex flex-row items-baseline justify-center gap-2 font-helvetica font-normal text-blckMain"
               target="_blank"
               href=""
             >
-              <span
-                className="font-helvetica text-base font-normal text-blckMain "
-                ref={registerLinkRef}
-              >
-                Let's connect
-              </span>
+              <div ref={connectRef}>
+                <span className="font-helvetica text-base font-normal text-blckMain">
+                  Let's connect
+                </span>
+              </div>
               <div className="flex items-center justify-center w-5 h-5 border-[0.5px] bg-white border-blckMain rounded-xs">
                 <Send />
               </div>
@@ -243,7 +290,7 @@ const Header = () => {
       </header>
       <div
         ref={scrollRef}
-        className="fixed bottom-6 left-10 flex flex-row gap-2 z-50 max-sm:left-1/2 max-sm:-translate-x-1/2"
+        className="fixed bottom-6 left-10 flex flex-row gap-2 z-50 max-sm:left-1/2 max-sm:-translate-x-1/2 "
       >
         <AnimateIcon loopDelay={2000} animate loop>
           <div className="flex items-center justify-center w-5 h-5 border-[0.5px] bg-white border-blckMain rounded-xs">
