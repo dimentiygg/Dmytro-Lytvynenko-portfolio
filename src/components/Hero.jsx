@@ -34,7 +34,7 @@ const Hero = () => {
     {
       name: "3legant shop",
       img: "/images/3legantShop.png",
-      link: "https://dimentiygg.github.io/3legantShopV2/",
+      link: "https://3legant-shop-v3.vercel.app/",
       containerColor: "#F0F0F0",
       index: 3,
     },
