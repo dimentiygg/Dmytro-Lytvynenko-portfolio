@@ -8,8 +8,9 @@ const Hero = () => {
     slidesToScroll: 1,
     loop: true,
     dragFree: false,
-    skipSnaps: false,
-    mcontainScroll: "trimSnaps",
+    skipSnaps: true,
+    containScroll: "trimSnaps",
+    duration: 15,
   };
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     WheelGesturesPlugin(),
